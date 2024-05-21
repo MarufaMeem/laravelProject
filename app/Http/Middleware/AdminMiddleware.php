@@ -5,11 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
-
-class AdminMiddleware 
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,13 +14,13 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next, $role)
     {
+        // Assuming you store the user's role in the session
+        $userRole = $request->session()->get('user_role');
 
-        if ($request->user() && Auth::user()->role == $role) {
+        if ($userRole && $userRole === $role) {
             return $next($request);
         }
 
         abort(403, 'Unauthorized action.');
     }
-
-    
 }

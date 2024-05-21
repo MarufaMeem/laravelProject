@@ -37,6 +37,18 @@ class CategoryController extends Controller
     $userc->meta_description = trim($request->meta_description);
     $userc->meta_keywords = trim($request->meta_keywords);
     $userc->created_by=Auth::user()->id;
+
+    $userc->button_name = trim($request->button_name);
+    $userc->is_home = !empty($request->is_home) ? 1: 0;
+
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path('/uploads/category');
+        $image->move($destinationPath, $imageName);
+        $userc->image = $imageName;
+    }
+
     $userc->save();
     Alert::success('Success', 'Category successfully created');
     return redirect('admin/category/list');
@@ -61,7 +73,18 @@ public function update($id,Request $request)
     $userc->meta_title =trim($request->meta_title);
     $userc->meta_description = trim($request->meta_description);
     $userc->meta_keywords = trim($request->meta_keywords);
-   
+    $userc->button_name = trim($request->button_name);
+    $userc->is_home = !empty($request->is_home) ? 1: 0;
+
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $destinationPath = public_path('/uploads/category');
+        $image->move($destinationPath, $imageName);
+        $userc->image = $imageName;
+    }
+
+
     $userc->save();
     Alert::success('Success', 'Category successfully updated');
     return redirect('admin/category/list');

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -38,10 +38,12 @@ class DashboardController extends Controller
     
     public function adminHome(Request $request)
     {
-    
+        $user = User::find($request->session()->get('user_id'));
         $responseIndex = $this->index($request);
     
-    return view('dashboard.dashboard',$responseIndex,["msg"=>"I am a Admin role"]);
+    return view('dashboard.dashboard',$responseIndex,["msg"=>"I am a Admin role"],[
+        'user' => $user
+    ]);
     
     }
     

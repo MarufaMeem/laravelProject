@@ -152,7 +152,11 @@
         <img src="/assetsh/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">{{Auth::user()->name}}</a>
+       
+        <a href="#" class="d-block"> {{ session('user_name') }}</a>
+ 
+        
+    
       </div>
     </div>
 
@@ -188,7 +192,7 @@
               <a href="{{url('/admin/list')}}"  class="nav-link  @if(Request::segment(2) == 'dashboard') @endif">
                 <i class="nav-icon fas fa-user-alt"></i>
                 <p>
-       {{Auth::user()->name}}
+                  {{ session('user_name') }}
          <br>
               
                 </p>
@@ -244,6 +248,42 @@
                 <i class="nav-icon fas fa-product-hunt"></i>
                 <p>
                  Product   
+                 
+                </p>
+              </a>
+            </li>
+
+
+            <li class="nav-item">
+              <a href="{{url('/admin/slider/list')}}" class="nav-link @if(Request::segment(2) == 'slider') active @endif">
+                <i class="nav-icon fas fa-product-hunt"></i>
+                <p>
+                 Slider 
+                 
+                </p>
+              </a>
+            </li>
+       
+
+
+
+            <li class="nav-item">
+              <a href="{{url('/admin/page/list')}}" class="nav-link @if(Request::segment(2) == 'page') active @endif">
+                <i class="nav-icon fas fa-product-hunt"></i>
+                <p>
+                 Pages 
+                 
+                </p>
+              </a>
+            </li>
+       
+
+
+            <li class="nav-item">
+              <a href="{{url('/admin/partner/list')}}" class="nav-link @if(Request::segment(2) == 'partner') active @endif">
+                <i class="nav-icon fas fa-product-hunt"></i>
+                <p>
+                 Partner 
                  
                 </p>
               </a>

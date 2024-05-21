@@ -24,7 +24,7 @@
           <!-- general form elements -->
           <div class="card card-primary">
            
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
               @csrf
               <div class="card-body">
                 <div class="form-group">
@@ -47,6 +47,31 @@
                   </select>
                      
                 </div>
+
+
+
+                <div class="form-group">
+                  <label >Image<span style="color:red">*</span></label>
+                  <input type="file" name="image" class="form-control" style="padding: 5px;" multiple accept="image/*">
+                 
+                </div>
+
+
+                <div class="form-group">
+                  <label >Button Name<span style="color:red">*</span></label>
+                  <input type="text" class="form-control"  name="button_name"  placeholder="button name">
+                
+                </div>
+                
+              
+                
+                <div class="form-group">
+                  <label >Home Screen<span style="color:red">*</span></label>
+                  <input type="checkbox"  name="is_home"  >
+                
+                </div>
+
+
                
                 <div class="form-group">
                   <label >Meta title <span style="color:red">*</span></label>

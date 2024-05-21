@@ -74,7 +74,7 @@ class Kernel extends HttpKernel
 
     // other middleware
     'user-role' => \App\Http\Middleware\AdminMiddleware::class,
-
+    'user' => \App\Http\Middleware\UserMiddleware::class,
 
 'back' => \App\Http\Middleware\backMiddleware::class    ];
     
@@ -98,6 +98,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'user-role' => \App\Http\Middleware\AdminMiddleware::class,
+        'user' => \App\Http\Middleware\UserMiddleware::class,
         
 'back' => \App\Http\Middleware\backMiddleware::class ,
     ];

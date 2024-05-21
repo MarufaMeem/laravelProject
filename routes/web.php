@@ -13,6 +13,10 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\PartnerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,13 +70,20 @@ Route::post('/forgot-password', [AuthController::class, 'auth_forgot_password'])
 
 
 
-Route::middleware(['auth','user-role:user'])->group(function()
+Route::middleware(['user-role:user'])->group(function()
 {
     Route::get('/user/dashboard',[DashboardController::class, 'userHome'])->name('home');
+
+
+
+    Route::get('/checkout/payment', [PaymentController::class, 'checkout_payment'])->name('checkout_payment');
+    Route::post('/checkout/payment', [PaymentController::class, 'checkout_payment'])->name('checkout_payment');
+    Route::post('checkout/place-order', [PaymentController::class, 'placeorder'])->name('placeorder');
+    Route::post('/process_stripe_payment', [PaymentController::class, 'processStripePayment'])->name('process_stripe_payment');
 });
 
 
-Route::middleware(['auth', 'user-role:moderator'])->group(function() {
+Route::middleware([ 'user-role:moderator'])->group(function() {
     Route::get('/moderator/dashboard', [DashboardController::class, 'moderatorHome'])->name('home.moderator');
 });
 
@@ -100,7 +111,7 @@ Route::middleware(['auth', 'user-role:moderator'])->group(function() {
 // });
 
 
-Route::middleware(['auth','user-role:admin'])->group(function()
+Route::middleware(['user-role:admin'])->group(function()
 {
 
     Route::get('/admin/dashboard',[DashboardController::class, 'adminHome'])->name('home.admin');
@@ -176,6 +187,9 @@ Route::post('/admin/brand/edit/{id}',[BrandController::class, 'update']);
 
 
 
+
+
+
 Route::get('/admin/color/list',[ColorController::class, 'list']);
 Route::get('/admin/color/add',[ColorController::class, 'add']);
 Route::post('/admin/color/add',[ColorController::class, 'insert']);
@@ -189,6 +203,39 @@ Route::post('/admin/color/edit/{id}',[ColorController::class, 'update']);
 
 
 
+Route::get('/admin/page/list',[PageController::class, 'list']);
+
+Route::post('/admin/page/edit/{id}',[PageController::class, 'update']);
+
+Route::get('/admin/page/edit/{id}',[PageController::class, 'edit']);
+
+
+
+Route::get('/admin/slider/list',[SliderController::class, 'list']);
+Route::get('/admin/slider/add',[SliderController::class, 'add']);
+Route::post('/admin/slider/add',[SliderController::class, 'insert']);
+
+Route::get('/admin/slider/edit/{id}',[SliderController::class, 'edit']);
+
+Route::get('/admin/slider/delete/{id}',[SliderController::class, 'delete']);
+
+Route::post('/admin/slider/edit/{id}',[SliderController::class, 'update']);
+
+
+
+
+
+
+Route::get('/admin/partner/list',[PartnerController::class, 'list']);
+Route::get('/admin/partner/add',[PartnerController::class, 'add']);
+Route::post('/admin/partner/add',[PartnerController::class, 'insert']);
+
+Route::get('/admin/partner/edit/{id}',[PartnerController::class, 'edit']);
+
+Route::get('/admin/partner/delete/{id}',[PartnerController::class, 'delete']);
+
+Route::post('/admin/partner/edit/{id}',[PartnerController::class, 'update']);
+
 
 
 
@@ -197,13 +244,43 @@ Route::post('/admin/color/edit/{id}',[ColorController::class, 'update']);
 
 
 
+    Route::get('user/editprofile', [UserController::class, 'editprofile']);
+
+    Route::post('user/updateprofile', [UserController::class, 'updateprofile'])->name('user.updateprofile');
+
+
+    Route::get('user/changepw', [UserController::class, 'changepw']);
+    Route::post('user/updatepw', [UserController::class, 'updatepw'])->name('user.updatepw');
+
+
+
+   
+       
+    
 Route::get('/',[HomeController::class, 'home']);
+Route::get('contact',[HomeController::class, 'contact']);
+Route::get('about',[HomeController::class, 'about']);
+Route::get('faq',[HomeController::class, 'faq']);
+Route::get('payment_method',[HomeController::class, 'payment_method']);
+Route::get('return',[HomeController::class, 'return']);
+Route::get('money_back',[HomeController::class, 'money_back']);
+Route::get('terms_condition',[HomeController::class, 'terms_condition']);
+Route::get('privacy_policy',[HomeController::class, 'privacy_policy']);
+Route::get('help',[HomeController::class, 'help']);
+
+
+
+
 
 Route::get('/cart', [PaymentController::class, 'view_cart']);
 Route::post('/update_cart', [PaymentController::class, 'update_cart']);
 Route::get('/cart/delete/{id}', [PaymentController::class, 'cart_delete']);
 
 Route::get('/checkout', [PaymentController::class, 'checkout']);
+
+
+Route::get('/success', [PaymentController::class, 'success']);
+
 
 Route::get('{slug?}/{subslug?}',[ProductFront::class, 'getCategory']);
 
@@ -218,8 +295,5 @@ Route::post('get_filter_product_ajax',[ProductFront::class, 'getFilterProductAja
 
 
 Route::post('product/add-to-cart',[PaymentController::class, 'add_to_cart']);
-
-
-
 
 

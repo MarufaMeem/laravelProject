@@ -18,63 +18,30 @@
                                         }
                                     }
                                 }'>
+
+
+                                @foreach($getSlider as $slider)
+                                
                                 <div class="intro-slide">
                                     <figure class="slide-image">
                                         <picture>
-                                            <source media="(max-width: 480px)" srcset="assets/images/slider/slide-1-480w.jpg">
-                                            <img src="assets/images/slider/slide-1.jpg" alt="Image Desc">
+                                            <source media="(max-width: 480px)" srcset="{{$slider->getLogo()}}">
+                                            <img src="{{$slider->getLogo()}}" alt="Image Desc">
                                         </picture>
                                     </figure><!-- End .slide-image -->
 
                                     <div class="intro-content">
-                                        <h3 class="intro-subtitle">Topsale Collection</h3><!-- End .h3 intro-subtitle -->
-                                        <h1 class="intro-title">Living Room<br>Furniture</h1><!-- End .intro-title -->
+                                        <h3 class="intro-subtitle">{!!$slider->title!!}</h3><!-- End .h3 intro-subtitle -->
+                                        <h1 class="intro-title">{!!$slider->title!!}</h1><!-- End .intro-title -->
 
-                                        <a href="category.html" class="btn btn-outline-white">
-                                            <span>SHOP NOW</span>
+                                        <a href="{{$slider->button_link}}" class="btn btn-outline-white">
+                                            <span>{!!$slider->button_name!!}</span>
                                             <i class="icon-long-arrow-right"></i>
                                         </a>
                                     </div><!-- End .intro-content -->
                                 </div><!-- End .intro-slide -->
-
-                                <div class="intro-slide">
-                                    <figure class="slide-image">
-                                        <picture>
-                                            <source media="(max-width: 480px)" srcset="assets/images/slider/slide-2-480w.jpg">
-                                            <img src="assets/images/slider/slide-2.jpg" alt="Image Desc">
-                                        </picture>
-                                    </figure><!-- End .slide-image -->
-
-                                    <div class="intro-content">
-                                        <h3 class="intro-subtitle">News and Inspiration</h3><!-- End .h3 intro-subtitle -->
-                                        <h1 class="intro-title">New Arrivals</h1><!-- End .intro-title -->
-
-                                        <a href="category.html" class="btn btn-outline-white">
-                                            <span>SHOP NOW</span>
-                                            <i class="icon-long-arrow-right"></i>
-                                        </a>
-                                    </div><!-- End .intro-content -->
-                                </div><!-- End .intro-slide -->
-
-                                <div class="intro-slide">
-                                    <figure class="slide-image">
-                                        <picture>
-                                            <source media="(max-width: 480px)" srcset="assets/images/slider/slide-3-480w.jpg">
-                                            <img src="assets/images/slider/slide-3.jpg" alt="Image Desc">
-                                        </picture>
-                                    </figure><!-- End .slide-image -->
-
-                                    <div class="intro-content">
-                                        <h3 class="intro-subtitle">Outdoor Furniture</h3><!-- End .h3 intro-subtitle -->
-                                        <h1 class="intro-title">Outdoor Dining <br>Furniture</h1><!-- End .intro-title -->
-
-                                        <a href="category.html" class="btn btn-outline-white">
-                                            <span>SHOP NOW</span>
-                                            <i class="icon-long-arrow-right"></i>
-                                        </a>
-                                    </div><!-- End .intro-content -->
-                                </div><!-- End .intro-slide -->
-                            </div><!-- End .intro-slider owl-carousel owl-simple -->
+@endforeach
+                            </div>         
                             
                             <span class="slider-loader"></span><!-- End .slider-loader -->
                         </div><!-- End .intro-slider-container -->
@@ -114,6 +81,9 @@
                     </div><!-- End .col-lg-4 -->
                 </div><!-- End .row -->
 
+                @if (!empty($getPartner->count()))
+                    
+       
                 <div class="mb-6"></div><!-- End .mb-6 -->
 
                 <div class="owl-carousel owl-simple" data-toggle="owl" 
@@ -140,30 +110,20 @@
                             }
                         }
                     }'>
-                    <a href="#" class="brand">
-                        <img src="assets/images/brands/1.png" alt="Brand Name">
+
+@foreach ($getPartner as $item)
+    
+
+
+                    <a href="{{$item->button_link}}" class="brand">
+                        <img src="{{$item->getLogo()}}" >
                     </a>
 
-                    <a href="#" class="brand">
-                        <img src="assets/images/brands/2.png" alt="Brand Name">
-                    </a>
-
-                    <a href="#" class="brand">
-                        <img src="assets/images/brands/3.png" alt="Brand Name">
-                    </a>
-
-                    <a href="#" class="brand">
-                        <img src="assets/images/brands/4.png" alt="Brand Name">
-                    </a>
-
-                    <a href="#" class="brand">
-                        <img src="assets/images/brands/5.png" alt="Brand Name">
-                    </a>
-
-                    <a href="#" class="brand">
-                        <img src="assets/images/brands/6.png" alt="Brand Name">
-                    </a>
+                    @endforeach                  
                 </div><!-- End .owl-carousel -->
+
+                @endif
+
             </div><!-- End .container -->
         </div><!-- End .bg-lighter -->
 
@@ -647,66 +607,51 @@
             </div><!-- End .tab-content -->
         </div><!-- End .container -->
 
+
+        @if (!empty($getCategory->count()))
+            
         <div class="container categories pt-6">
             <h2 class="title-lg text-center mb-4">Shop by Categories</h2><!-- End .title-lg text-center -->
 
             <div class="row">
-                <div class="col-6 col-lg-4">
-                    <div class="banner banner-display banner-link-anim">
-                        <a href="#">
-                            <img src="assets/images/banners/home/banner-1.jpg" alt="Banner">
-                        </a>
-
-                        <div class="banner-content banner-content-center">
-                            <h3 class="banner-title text-white"><a href="#">Outdoor</a></h3><!-- End .banner-title -->
-                            <a href="#" class="btn btn-outline-white banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
-                        </div><!-- End .banner-content -->
-                    </div><!-- End .banner -->
-                </div><!-- End .col-sm-6 col-lg-3 -->
-                <div class="col-6 col-lg-4 order-lg-last">
-                    <div class="banner banner-display banner-link-anim">
-                        <a href="#">
-                            <img src="assets/images/banners/home/banner-4.jpg" alt="Banner">
-                        </a>
-
-                        <div class="banner-content banner-content-center">
-                            <h3 class="banner-title text-white"><a href="#">Lighting</a></h3><!-- End .banner-title -->
-                            <a href="#" class="btn btn-outline-white banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
-                        </div><!-- End .banner-content -->
-                    </div><!-- End .banner -->
-                </div><!-- End .col-sm-6 col-lg-3 -->
+              
+         @foreach ($getCategory as $item)
+             
+        @if (!empty($item->getLogo()))
+            
+    
                 <div class="col-sm-12 col-lg-4 banners-sm">
-                    <div class="row">
+                  
                         <div class="banner banner-display banner-link-anim col-lg-12 col-6">
-                            <a href="#">
-                                <img src="assets/images/banners/home/banner-2.jpg" alt="Banner">
+                            <a href="{{url($item->slug)}}">
+                                <img src="{{$item->getLogo()}}" alt="Banner">
                             </a>
 
                             <div class="banner-content banner-content-center">
-                                <h3 class="banner-title text-white"><a href="#">Furniture and Design</a></h3><!-- End .banner-title -->
-                                <a href="#" class="btn btn-outline-white banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
+                                <h3 class="banner-title text-white"><a href="{{url($item->slug)}}">{{$item->name}}</a></h3><!-- End .banner-title -->
+                                @if (!empty($item->button_name))
+                                <a href="{{url($item->slug)}}" class="btn btn-outline-white banner-link">{{$item->button_name}}<i class="icon-long-arrow-right"></i></a>
+                                @endif
+                                
                             </div><!-- End .banner-content -->
                         </div><!-- End .banner -->
 
-                        <div class="banner banner-display banner-link-anim col-lg-12 col-6">
-                            <a href="#">
-                                <img src="assets/images/banners/home/banner-3.jpg" alt="Banner">
-                            </a>
-
-                            <div class="banner-content banner-content-center">
-                                <h3 class="banner-title text-white"><a href="#">Kitchen & Utensil</a></h3><!-- End .banner-title -->
-                                <a href="#" class="btn btn-outline-white banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
-                            </div><!-- End .banner-content -->
-                        </div><!-- End .banner -->
+                 
                     </div>
+
+                    @endif
+                    @endforeach
                 </div><!-- End .col-sm-6 col-lg-3 -->
-            </div><!-- End .row -->
+          
         </div><!-- End .container -->
+        @endif
+
+      
 
         <div class="mb-5"></div><!-- End .mb-6 -->
 
         
-        <div class="container">
+        {{-- <div class="container">
             <div class="heading heading-center mb-6">
                 <h2 class="title">Recent Arrivals</h2><!-- End .title -->
 
@@ -1205,7 +1150,7 @@
             <div class="more-container text-center">
                 <a href="#" class="btn btn-outline-darker btn-more"><span>Load more products</span><i class="icon-long-arrow-down"></i></a>
             </div><!-- End .more-container -->
-        </div><!-- End .container -->
+        </div><!-- End .container --> --}}
 
         <div class="container">
             <hr>
@@ -1249,7 +1194,8 @@
 
             <div class="mb-2"></div><!-- End .mb-2 -->
         </div><!-- End .container -->
-        <div class="blog-posts pt-7 pb-7" style="background-color: #fafafa;">
+
+        {{-- <div class="blog-posts pt-7 pb-7" style="background-color: #fafafa;">
             <div class="container">
                <h2 class="title-lg text-center mb-3 mb-md-4">From Our Blog</h2><!-- End .title-lg text-center -->
 
@@ -1346,19 +1292,19 @@
             <div class="more-container text-center mb-0 mt-3">
                 <a href="blog.html" class="btn btn-outline-darker btn-more"><span>View more articles</span><i class="icon-long-arrow-right"></i></a>
             </div><!-- End .more-container -->
-        </div>
+        </div> --}}
         <div class="cta cta-display bg-image pt-4 pb-4" style="background-image: url(assets/images/backgrounds/cta/bg-6.jpg);">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-10 col-lg-9 col-xl-8">
                         <div class="row no-gutters flex-column flex-sm-row align-items-sm-center">
                             <div class="col">
-                                <h3 class="cta-title text-white">Sign Up & Get 10% Off</h3><!-- End .cta-title -->
+                                <h3 class="cta-title text-white">Sign Up </h3><!-- End .cta-title -->
                                 <p class="cta-desc text-white">Molla presents the best in interior design</p><!-- End .cta-desc -->
                             </div><!-- End .col -->
 
                             <div class="col-auto">
-                                <a href="login.html" class="btn btn-outline-white"><span>SIGN UP</span><i class="icon-long-arrow-right"></i></a>
+                                <a href="#signin-modal" class="btn btn-outline-white"><span>SIGN UP</span><i class="icon-long-arrow-right"></i></a>
                             </div><!-- End .col-auto -->
                         </div><!-- End .row no-gutters -->
                     </div><!-- End .col-md-10 col-lg-9 -->

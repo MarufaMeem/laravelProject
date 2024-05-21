@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use Str;
@@ -23,42 +23,37 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        $credentials = $request->all();
-    $this->validate($request,[
+        $credentials = $request->only('email', 'password');
+
+        $request->validate([
             'email' => 'required',
             'password' => 'required'
-          //  'is_delete' => 'required'
         ]);
 
+        $user = User::where('email', $credentials['email'])->where('is_delete', 0)->first();
 
-        // User::where('email', $credentials);
+        if ($user && Hash::check($credentials['password'], $user->password) && $user->status == 'Active') {
+            // Set user session data
+            $request->session()->put('user_id', $user->id);
+            $request->session()->put('user_role', $user->role);
+            $request->session()->put('user_name', $user->name); 
 
-        if (auth::attempt(['email'=>$credentials["email"],'password'=>$credentials["password"],'is_delete'=> 0]) && auth()->user()->status == 'Active' ) {
-            // $request->Session()->regenerate();
-if(auth()->user()->role === 'admin' )
-       {     Alert::success('Success', 'Login admin success !');
-        return redirect()->route('home.admin'); 
-       }
-
-   else    if(auth()->user()->role === 'moderator'
-   )
-       {     Alert::success('Success', 'Login moderator success !');
-        return redirect()->route('home.moderator'); 
-       }
-
-   else   
-       {     Alert::success('Success', 'Login user success !');
-            return redirect()->route('home');
-       }
-
- } 
- 
- else
-  {
+            if ($user->role === 'admin') {
+                Alert::success('Success', 'Login admin success !');
+                return redirect()->route('home.admin');
+            } elseif ($user->role === 'moderator') {
+                Alert::success('Success', 'Login moderator success !');
+                return redirect()->route('home.moderator');
+            } else {
+                Alert::success('Success', 'Login user success !');
+                return redirect()->route('home');
+            }
+        } else {
             Alert::error('Error', 'Please enter correct email/password!');
             return redirect('/login');
-   }
+        }
     }
+
 
     public function register()
     {
@@ -88,10 +83,8 @@ if(auth()->user()->role === 'admin' )
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        $request->session()->flush();
 
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
         Alert::success('Success', 'Log out success !');
         return redirect('login');
     }

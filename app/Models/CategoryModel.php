@@ -31,6 +31,18 @@ static public function getRecordActive()
 }
 
 
+static public function getRecordActiveHome()
+{
+    return self::select('category.*')
+    ->join('users','users.id','=','category.created_by')
+    ->where('category.is_delete','=',0)
+    ->where('category.is_home','=',1)
+    ->where('category.status','=',0)
+    ->orderBy('category.id','asc')
+    ->get();
+}
+
+
 static public function getRecordMenu()
 {
     return self::select('category.*')
@@ -55,5 +67,19 @@ static public function getSingle($id){
     static public function getSingleSlug($slug){
         return self::where('slug','=',$slug)->where('category.status','=',0)->where('category.is_delete','=',0)->first();
         }
+
+
+       
+public function getLogo()
+{
+   if(!empty($this->image) && file_exists('uploads/category/'.$this->image))
+   {
+    return url('uploads/category/'.$this->image);
+}
+else
+{
+    return "";
+}
+}
 
 }
