@@ -24,6 +24,46 @@ class AuthController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
+    
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+    
+        $user = User::where('email', $credentials['email'])->where('is_delete', 0)->first();
+    
+        if ($user && Hash::check($credentials['password'], $user->password) && $user->status == 'Active') {
+            // Check if the user's email is verified
+            if ($user->email_verified_at !== null) {
+                // Set user session data
+                $request->session()->put('user_id', $user->id);
+                $request->session()->put('user_role', $user->role);
+                $request->session()->put('user_name', $user->name);
+    
+                if ($user->role === 'admin') {
+                    Alert::success('Success', 'Login admin success !');
+                    return redirect()->route('home.admin');
+                } elseif ($user->role === 'moderator') {
+                    Alert::success('Success', 'Login moderator success !');
+                    return redirect()->route('home.moderator');
+                } else {
+                    Alert::error('Error', 'Please enter correct email/password!');
+            return redirect('/login');
+                }
+            } else {
+                Alert::error('Error', 'Please verify your email before logging in!');
+                return redirect('/login');
+            }
+        } else {
+            Alert::error('Error', 'Please enter correct email/password!');
+            return redirect('/login');
+        }
+    }
+    
+
+    public function authenticatehome(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
 
         $request->validate([
             'email' => 'required',
@@ -34,25 +74,25 @@ class AuthController extends Controller
 
         if ($user && Hash::check($credentials['password'], $user->password) && $user->status == 'Active') {
             // Set user session data
+            if ($user->email_verified_at !== null) {
             $request->session()->put('user_id', $user->id);
             $request->session()->put('user_role', $user->role);
             $request->session()->put('user_name', $user->name); 
 
-            if ($user->role === 'admin') {
-                Alert::success('Success', 'Login admin success !');
-                return redirect()->route('home.admin');
-            } elseif ($user->role === 'moderator') {
-                Alert::success('Success', 'Login moderator success !');
-                return redirect()->route('home.moderator');
+           
+                Alert::success('Success', 'Login success !');
+                return redirect()->back();
             } else {
-                Alert::success('Success', 'Login user success !');
-                return redirect()->route('home');
+                Alert::error('Error', 'Please verify your email before logging in!');
+                return redirect()->back();
             }
+           
         } else {
             Alert::error('Error', 'Please enter correct email/password!');
-            return redirect('/login');
+            return redirect()->back();
         }
     }
+
 
 
     public function register()
@@ -89,6 +129,15 @@ class AuthController extends Controller
         return redirect('login');
     }
 
+
+    public function logout_user(Request $request)
+    {
+        $request->session()->flush();
+
+        Alert::success('Success', 'Log out success !');
+        return redirect('/');
+    }
+
 public function process(Request $request)
 {
      $request->validate([
@@ -106,11 +155,49 @@ public function process(Request $request)
    $save->remember_token=Str::random(40);
    $save->save();
     Mail::to($save->email)->send(new RegisterMail($save));
-    Alert::success('Success', 'Register user has been successfully !');
-    return redirect('login')->with('success',"Your account register successfully and verify your email");
+    Alert::success('Success', 'Your account register successfully and verify your email');
+    return redirect('login');
 }
 
 
+public function auth_register(Request $request)
+{
+
+
+$request->validate([
+    'name' => 'required',
+    'email' => 'required|unique:users',
+    'password' => 'required',
+    'passwordConfirm' => 'required|same:password'
+]);
+
+
+
+
+    $save=new User;
+    $save->name=trim($request->name);
+    $save->email=trim($request->email);
+    $save->password=hash::make($request->password);
+    $save->passwordConfirm=hash::make($request->passwordConfirm);
+    $save->remember_token=Str::random(40);
+    $save->save();
+     Mail::to($save->email)->send(new RegisterMail($save));
+     Alert::success('Success', 'Your account has been registered successfully.please verify your email');
+     return redirect()->back();
+
+    
+
+
+
+  
+   
+}
+  //  $request->validate([
+    //     'name' => 'required',
+    //     'email' => 'required|unique:users',
+    //     'password' => 'required',
+    //     'passwordConfirm' => 'required|same:password'
+    // ]);
 
 
 
@@ -205,6 +292,32 @@ return redirect('/login');
 
     }
 }
+
+
+
+
+
+
+
+public function redirectUserBasedOnRole(Request $request)
+{
+    $userRole = $request->session()->get('user_role');
+
+        if ($userRole === 'admin') {
+            Alert::success('Success', 'Login admin success !');
+            return redirect()->route('home.admin');
+        } elseif ($userRole === 'moderator') {
+            Alert::success('Success', 'Login moderator success !');
+            return redirect()->route('home.moderator');
+        }
+  
+}
+
+
+
+
+
+
 
 
 }

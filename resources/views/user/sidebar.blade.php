@@ -18,7 +18,14 @@
 @endif>Change Password</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="{{url('/login')}}" >Sign Out</a>
+  <form method="POST" action="{{ url('/logout-user') }}">
+    @csrf 
+  <button type="submit" class="nav-link" style="background: none; border: none; padding-left: 2; margin: 0; text-align:left">
+    <i class="fas fa-sign-out-alt"></i>
+    <p>Sign Out</p>
+  </button>
+</form>
+ 
 </li>
 </ul>
 </aside><!-- End .col-lg-3 -->

@@ -10,37 +10,24 @@ use Hash;
 use Illuminate\Support\Facades\Session;
 class UserController extends Controller
 {
-    public function dashboard()
-    {
-        $data['meta_title'] = 'dashboard';
-        $data['meta_description'] = '';
-        $data['meta_keywords'] = '';
+  
 
-        return view('user.dashboard', $data);
-    }
-    public function orders()
-    {
-        $userId = Session::get('user_id');
-        $data['getOrder']=OrderModel::getRecordUser($userId);
-        $data['meta_title'] = 'orders';
-        $data['meta_description'] = '';
-        $data['meta_keywords'] = '';
 
-        return view('user.orders', $data);
-    }
 
-    public function editprofile()
+    public function editprofile(Request $request)
     {
         $data['meta_title'] = 'editprofile';
         $data['meta_description'] = '';
         $data['meta_keywords'] = '';
-
+    
         $userId = Session::get('user_id');
         $data['getRecord'] = User::getSingle($userId);
 
+        // dd('Session user_id: ', $userId, 'User Record: ', $data['getRecord']);
+       
         return view('user.editprofile', $data);
     }
-
+    
     public function updateprofile(Request $request)
     {
         $userId = Session::get('user_id');

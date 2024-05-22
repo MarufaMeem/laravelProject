@@ -15,11 +15,14 @@
                           <li><a href="{{url('about')}}">About Us</a></li>
                           <li><a href="{{url('contact')}}">Contact Us</a></li>
                           @if (session()->has('user_id'))
-                          <li><a href="{{ url('/user/editprofile') }}"><i class="icon-user"></i> {{ session('user_name') }}</a></li>
+                          <li><a href="{{ route('user.editprofile') }}"><i class="icon-user"></i> {{ session('user_name') }}</a>
+                          </li>
                       @else
                           <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i> Login</a></li>
                       @endif
-                      
+                      @if (in_array(session('user_role'), ['admin', 'moderator']))
+                      <li><a href="{{ url('/admin') }}">Going to Admin Panel</a></li>
+                  @endif
                       </ul>
                   </li>
               </ul><!-- End .top-menu -->

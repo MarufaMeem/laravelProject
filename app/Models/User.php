@@ -18,11 +18,11 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $primaryKey = 'id_user';
+    protected $primaryKey = 'id';
 
     protected $table = 'users';
 
-    protected $guarded = ['id_user'];
+    protected $guarded = ['id'];
 
     protected $fillable = [
         'name',
@@ -81,8 +81,9 @@ protected function status(): Attribute {
     );
 }
 static public function getSingle($id){
-return User::find($id);
+    return self::find($id);
 }
+
 
 static public function getAdmin()
 {

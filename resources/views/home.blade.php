@@ -8,7 +8,7 @@
         <div class="intro-section bg-lighter pt-5 pb-6">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="intro-slider-container slider-container-ratio slider-container-1 mb-2 mb-lg-0">
                             <div class="intro-slider intro-slider-1 owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{
                                     "nav": false, 
@@ -46,39 +46,7 @@
                             <span class="slider-loader"></span><!-- End .slider-loader -->
                         </div><!-- End .intro-slider-container -->
                     </div><!-- End .col-lg-8 -->
-                    <div class="col-lg-4">
-                        <div class="intro-banners">
-                            <div class="row row-sm">
-                                <div class="col-md-6 col-lg-12">
-                                    <div class="banner banner-display">
-                                        <a href="#">
-                                            <img src="assets/images/banners/home/intro/banner-1.jpg" alt="Banner">
-                                        </a>
-
-                                        <div class="banner-content">
-                                            <h4 class="banner-subtitle text-darkwhite"><a href="#">Clearence</a></h4><!-- End .banner-subtitle -->
-                                            <h3 class="banner-title text-white"><a href="#">Chairs & Chaises <br>Up to 40% off</a></h3><!-- End .banner-title -->
-                                            <a href="#" class="btn btn-outline-white banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
-                                        </div><!-- End .banner-content -->
-                                    </div><!-- End .banner -->
-                                </div><!-- End .col-md-6 col-lg-12 -->
-
-                                <div class="col-md-6 col-lg-12">
-                                    <div class="banner banner-display mb-0">
-                                        <a href="#">
-                                            <img src="assets/images/banners/home/intro/banner-2.jpg" alt="Banner">
-                                        </a>
-
-                                        <div class="banner-content">
-                                            <h4 class="banner-subtitle text-darkwhite"><a href="#">New in</a></h4><!-- End .banner-subtitle -->
-                                            <h3 class="banner-title text-white"><a href="#">Best Lighting <br>Collection</a></h3><!-- End .banner-title -->
-                                            <a href="#" class="btn btn-outline-white banner-link">Discover Now<i class="icon-long-arrow-right"></i></a>
-                                        </div><!-- End .banner-content -->
-                                    </div><!-- End .banner -->
-                                </div><!-- End .col-md-6 col-lg-12 -->
-                            </div><!-- End .row row-sm -->
-                        </div><!-- End .intro-banners -->
-                    </div><!-- End .col-lg-4 -->
+                 
                 </div><!-- End .row -->
 
                 @if (!empty($getPartner->count()))
@@ -1304,7 +1272,7 @@
                             </div><!-- End .col -->
 
                             <div class="col-auto">
-                                <a href="#signin-modal" class="btn btn-outline-white"><span>SIGN UP</span><i class="icon-long-arrow-right"></i></a>
+                                <a href="#signin-modal" class="btn btn-outline-white" data-toggle="modal"><span>SIGN UP</span><i class="icon-long-arrow-right"></i></a>
                             </div><!-- End .col-auto -->
                         </div><!-- End .row no-gutters -->
                     </div><!-- End .col-md-10 col-lg-9 -->

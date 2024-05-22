@@ -34,7 +34,9 @@ Route::post('/login', [AuthController::class, 'authenticate']);
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'process']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('back');
-
+Route::post('/', [AuthController::class, 'authenticatehome']);
+Route::get('/admin', [AuthController::class, 'redirectUserBasedOnRole']);
+Route::post('/logout-user', [AuthController::class, 'logout_user'])->middleware('back');
 // route dashboard
 
 // Route::get('/dashboard', function(){
@@ -66,7 +68,7 @@ Route::get('/forgot-password', [AuthController::class, 'forgot_password']);
 
 Route::post('/forgot-password', [AuthController::class, 'auth_forgot_password']);
 
-
+Route::post('auth_register', [AuthController::class, 'auth_register']);
 
 
 
@@ -243,8 +245,7 @@ Route::post('/admin/partner/edit/{id}',[PartnerController::class, 'update']);
 });
 
 
-
-    Route::get('user/editprofile', [UserController::class, 'editprofile']);
+Route::get('user/editprofile', [UserController::class, 'editprofile'])->name('user.editprofile');
 
     Route::post('user/updateprofile', [UserController::class, 'updateprofile'])->name('user.updateprofile');
 

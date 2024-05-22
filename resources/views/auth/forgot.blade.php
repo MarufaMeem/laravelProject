@@ -1,8 +1,4 @@
-@extends('layouts.app')
-@section('style')
-    
-@endsection
-@section('content')
+
 
 <!DOCTYPE html>
   <html lang="id">
@@ -63,8 +59,7 @@
   
       </div>
     
-@endsection
-@section('script')
+
     
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
 
@@ -91,4 +86,3 @@
     })();
 </script>
 
-@endsection

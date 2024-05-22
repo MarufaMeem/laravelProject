@@ -75,7 +75,7 @@
                             </ul>
                             <div class="tab-content" id="tab-content-5">
                                 <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                    <form class="needs-validation" novalidate action="/login" method="POST">
+                                    <form class="needs-validation" novalidate action="/" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <label for="singin-email">email address <span style="color: red">*</span> </label>
@@ -110,7 +110,7 @@
                                 <div class="tab-pane fade" id="register" role="tabpanel" 
                                 aria-labelledby="register-tab">
 
-                                <form class="needs-validation" novalidate action="/register" method="POST">
+                                <form class="needs-validation" novalidate action="/auth_register" id="SubmitFormRegister" method="POST">
                                     @csrf
                                         <div class="form-group">
                                             <label for="email">Name <span style="color: red">*</span> </label>
@@ -160,29 +160,10 @@
                                                 <i class="icon-long-arrow-right"></i>
                                             </button>
 
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="register-policy" required>
-                                                <label class="custom-control-label" for="register-policy">I agree to the <a href="#">privacy policy</a> *</label>
-                                            </div><!-- End .custom-checkbox -->
+                                           
                                         </div><!-- End .form-footer -->
                                     </form>
-                                    <div class="form-choice">
-                                        <p class="text-center">or sign in with</p>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <a href="#" class="btn btn-login btn-g">
-                                                    <i class="icon-google"></i>
-                                                    Login With Google
-                                                </a>
-                                            </div><!-- End .col-6 -->
-                                            <div class="col-sm-6">
-                                                <a href="#" class="btn btn-login  btn-f">
-                                                    <i class="icon-facebook-f"></i>
-                                                    Login With Facebook
-                                                </a>
-                                            </div><!-- End .col-6 -->
-                                        </div><!-- End .row -->
-                                    </div><!-- End .form-choice -->
+                                 
                                 </div><!-- .End .tab-pane -->
                             </div><!-- End .tab-content -->
                         </div><!-- End .form-tab -->
@@ -242,6 +223,12 @@ $('body').delegate('#SubmitFormRegister','submit',function(e){
         data:$(this).serialize(),
         dataType:"json",
         success: function(data){
+alert(data.message);
+if(data.status == true)
+{
+    location.reload();
+
+}
 
         },
         error:function(data){
