@@ -18,6 +18,19 @@
 <body class="hold-transition login-page">
 
   @include('sweetalert::alert')
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+     
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{url('/')}}" class="nav-link">Home</a>
+      </li>
+      
+    </ul>
+  
+    <!-- Right navbar links -->
+   
+  </nav>
 
 <div class="login-box">
   <div class="login-logo">
@@ -67,7 +80,7 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        <a href="{{url('forgot-password')}}" class="forgot-link">Forgot Your Password?</a>
       </p>
       
     </div>

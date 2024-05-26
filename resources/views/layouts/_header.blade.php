@@ -21,7 +21,7 @@
                           <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i> Login</a></li>
                       @endif
                       @if (in_array(session('user_role'), ['admin', 'moderator']))
-                      <li><a href="{{ url('/admin') }}">Going to Admin Panel</a></li>
+                      <li><a href="{{ url('/admin') }}"> Admin Panel</a></li>
                   @endif
                       </ul>
                   </li>
@@ -38,19 +38,19 @@
                   <i class="icon-bars"></i>
               </button>
 
-              <a href="{{url('')}}" class="logo">
+              {{-- <a href="{{url('')}}" class="logo">
                   <img src="{{url('assets/images/logo.png')}}" alt="" width="105" height="25">
-              </a>
+              </a> --}}
 
               <nav class="main-nav">
                   <ul class="menu sf-arrows">
                       <li class="megamenu-container active">
-                          <a href="{{url('')}}">Home</a>
+                          <a href="{{url('')}}">Home </a>
 
                    
                       </li>
                       <li>
-                          <a href="javascript:;" class="sf-with-ul">Shop</a>
+                          <a href="javascript:;" class="sf-with-ul">Products</a>
 
                           <div class="megamenu megamenu-md">
                               <div class="row no-gutters">
@@ -88,41 +88,7 @@
                               </div><!-- End .row -->
                           </div><!-- End .megamenu megamenu-md -->
                       </li>
-                      <li>
-                          <a href="product.html" class="sf-with-ul">Product</a>
-
-                          <div class="megamenu megamenu-sm">
-                              <div class="row no-gutters">
-                                  <div class="col-md-6">
-                                      <div class="menu-col">
-                                          <div class="menu-title">Product Details</div><!-- End .menu-title -->
-                                          <ul>
-                                              <li><a href="product.html">Default</a></li>
-                                              <li><a href="product-centered.html">Centered</a></li>
-                                              <li><a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a></li>
-                                              <li><a href="product-gallery.html">Gallery</a></li>
-                                              <li><a href="product-sticky.html">Sticky Info</a></li>
-                                              <li><a href="product-sidebar.html">Boxed With Sidebar</a></li>
-                                              <li><a href="product-fullwidth.html">Full Width</a></li>
-                                              <li><a href="product-masonry.html">Masonry Sticky Info</a></li>
-                                          </ul>
-                                      </div><!-- End .menu-col -->
-                                  </div><!-- End .col-md-6 -->
-
-                                  <div class="col-md-6">
-                                      <div class="banner banner-overlay">
-                                          <a href="category.html">
-                                              <img src="{{url('assets/images/menu/banner-2.jpg')}}" alt="Banner">
-
-                                              <div class="banner-content banner-content-bottom">
-                                                  <div class="banner-title text-white">New Trends<br><span><strong>spring 2019</strong></span></div><!-- End .banner-title -->
-                                              </div><!-- End .banner-content -->
-                                          </a>
-                                      </div><!-- End .banner -->
-                                  </div><!-- End .col-md-6 -->
-                              </div><!-- End .row -->
-                          </div><!-- End .megamenu megamenu-sm -->
-                      </li>
+                
                     
                   </ul><!-- End .menu -->
               </nav><!-- End .main-nav -->
@@ -194,7 +160,7 @@ $getCartProduct = App\Models\ProductModel::getSingle($header_cart->id)  ;
                       </div><!-- End .dropdown-cart-total -->
 
                       <div class="dropdown-cart-action">
-                        <a href="cart" class="btn btn-primary">View Cart</a>
+                        <a href="/cart" class="btn btn-primary">View Cart</a>
 
 
                           <a href="{{url('checkout')}}" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>

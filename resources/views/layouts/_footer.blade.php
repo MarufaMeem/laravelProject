@@ -5,15 +5,15 @@
         <div class="row">
           <div class="col-sm-6 col-lg-3">
             <div class="widget widget-about">
-              <img src="{{url('assets/images/logo-footer.png')}}" class="footer-logo" alt="Footer Logo" width="105" height="25">
-              <p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
+             
+              <p>Welcome to Green Haven, your one-stop plant shop offering a wide variety of indoor and outdoor plants to beautify your home and garden.Visit Green Haven today and discover the joy of gardening with our carefully curated selection of plants, pots, and gardening supplies.</p>
 
               <div class="social-icons">
-                <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                <a href="#" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
-                <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                <a href="{{url('https://www.facebook.com/')}}" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                
+                <a href="{{url('https://www.instagram.com/')}}" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                <a href="{{url('https://www.instagram.com/')}}" class="social-icon" title="Youtube" target="_blank"><i class="icon-youtube"></i></a>
+               
               </div><!-- End .soial-icons -->
             </div><!-- End .widget about-widget -->
           </div><!-- End .col-sm-6 col-lg-3 -->
@@ -66,7 +66,7 @@
 
   <div class="footer-bottom">
     <div class="container">
-      <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+      <p class="footer-copyright">Copyright © 2022 HOH. All Rights Reserved.</p><!-- End .footer-copyright -->
       <figure class="footer-payments">
         <img src="{{url('assets/images/payments.png')}}" alt="Payment methods" width="272" height="20">
       </figure><!-- End .footer-payments -->

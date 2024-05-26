@@ -97,7 +97,7 @@
 
         <div class="mb-6"></div><!-- End .mb-6 -->
 
-        <div class="container">
+        {{-- <div class="container">
             <div class="heading heading-center mb-3">
                 <h2 class="title-lg">Trendy Products</h2><!-- End .title -->
 
@@ -573,7 +573,7 @@
                     </div><!-- End .owl-carousel -->
                 </div><!-- .End .tab-pane -->
             </div><!-- End .tab-content -->
-        </div><!-- End .container -->
+        </div><!-- End .container --> --}}
 
 
         @if (!empty($getCategory->count()))
@@ -1268,7 +1268,7 @@
                         <div class="row no-gutters flex-column flex-sm-row align-items-sm-center">
                             <div class="col">
                                 <h3 class="cta-title text-white">Sign Up </h3><!-- End .cta-title -->
-                                <p class="cta-desc text-white">Molla presents the best in interior design</p><!-- End .cta-desc -->
+                                <p class="cta-desc text-white">HOH presents the best </p><!-- End .cta-desc -->
                             </div><!-- End .col -->
 
                             <div class="col-auto">

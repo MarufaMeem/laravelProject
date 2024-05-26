@@ -17,6 +17,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\SalesController;
+
+Route::get('/api/sales-data', [SalesController::class, 'getSalesData']);
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
